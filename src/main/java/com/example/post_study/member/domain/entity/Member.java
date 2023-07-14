@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -22,9 +23,15 @@ public class Member extends BaseTimeEntity {
 
     private String email;
 
+    private String password;
+
+    @ColumnDefault("false")
+    private Boolean is_deleted;
+
     @Builder
-    public Member(String nickname, String email) {
+    public Member(String nickname, String email, String password) {
         this.nickname = nickname;
         this.email = email;
+        this.password = password;
     }
 }
